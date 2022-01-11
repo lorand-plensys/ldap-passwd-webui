@@ -59,3 +59,17 @@ make
  * [Web UI for changing LDAP password - python](https://github.com/jirutka/ldap-passwd-webui)
  * [Gitea](https://github.com/go-gitea/gitea)
  * [dchest/captcha](https://github.com/dchest/captcha)
+
+### Running docker container with non SSL
+docker run --add-host=host.docker.internal:host-gateway -d -p 8080:8080 --name ldap_change_pass \
+    -e LPW_TITLE="Change your global password for confluent.onemount.dev" \
+    -e LPW_HOST="$HOS_IP" \
+    -e LPW_PORT="389" \
+    -e LPW_ENCRYPTED="false" \
+    -e LPW_START_TLS="false" \
+    -e LPW_SSL_SKIP_VERIFY="true" \
+    -e LPW_USER_DN="cn=%s,dc=demo,dc=com" \
+    -e LPW_USER_BASE="dc=demo,dc=com" \
+    -e LPW_PATTERN='.{8,}' \
+    -e LPW_PATTERN_INFO="Password must be at least 8 characters long." \
+    npenkov/docker-ldap-passwd-webui:latest

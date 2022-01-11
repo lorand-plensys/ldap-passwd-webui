@@ -61,6 +61,7 @@ make
  * [dchest/captcha](https://github.com/dchest/captcha)
 
 ### Running docker container with non SSL
+```sh
 docker run --add-host=host.docker.internal:host-gateway -d -p 8080:8080 --name ldap_change_pass \
     -e LPW_TITLE="Change your global password for confluent.onemount.dev" \
     -e LPW_HOST="$HOS_IP" \
@@ -73,3 +74,4 @@ docker run --add-host=host.docker.internal:host-gateway -d -p 8080:8080 --name l
     -e LPW_PATTERN='.{8,}' \
     -e LPW_PATTERN_INFO="Password must be at least 8 characters long." \
     npenkov/docker-ldap-passwd-webui:latest
+```
